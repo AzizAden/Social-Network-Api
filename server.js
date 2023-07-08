@@ -10,7 +10,12 @@ app.use(express.json());
 app.use(routes);
 
 db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port:${PORT}!`);
-  });
+  try {
+    app.listen(PORT, () => {
+      console.log(`API server running on port:${PORT}!`);
+    });
+  } catch (error) {
+    console.error('Error starting the server:', error);
+  }
 });
+
